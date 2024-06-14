@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='/css/index.css')}}">
+    <title>Edit Employee</title>
+</head>
+<body>
+    <div class="container">
+        <h2>Edit Employee</h2>
+        {% if employee_updated is defined %}
+            <p>
+            {{ employee.name }} was edited with
+                {% for field in employee %}
+                    {% if loop.first %}
+                    {% else %}
+                        {{ field }} : {{ employee[field] }}
+                    {% endif %}
+                {% endfor %}
+            </p>
+        {% endif %}
+        <form id="employee_data" method="post" action="{{ url_for('editemployee', id=employee.id) }}">
+            {% include "employee_data.html" %}
+        </form>
+    </div>
+</body>
+</html>

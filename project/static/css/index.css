@@ -1,0 +1,99 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #121212; /* Dark background */
+    color: #fff;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    max-width: 80%;
+    margin: 0 auto;
+    background-color: #1b1f3b; /* Dark blue background */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+h1 {
+    text-align: center;
+    margin-top: 20px;
+    color: #ffffff; /* White text */
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+table th, table td {
+    border: 1px solid #666;
+    padding: 8px;
+    text-align: center;
+    color: #ffffff; /* White text */
+}
+
+table th {
+    background-color: #2e3b5a; /* Darker blue for table header */
+}
+
+table tr:nth-child(even) {
+    background-color: #3c4a72; /* Slightly lighter blue for even rows */
+}
+
+table tr:hover {
+    background-color: #4d5b8a; /* Hover effect */
+}
+
+button.btn {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    background-color: #007bff; /* Blue button */
+    color: #fff;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+button.btn:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
+form {
+    margin-top: 20px;
+    text-align: center;
+}
+
+form label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #ffffff; /* White text */
+}
+
+form input[type="number"],
+form input[type="submit"] {
+    padding: 8px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 1px solid #666;
+    background-color: #333;
+    color: #fff;
+}
+
+form input[type="submit"] {
+    background-color: #28a745; /* Light green button */
+    color: #fff;
+    cursor: pointer;
+}
+
+form input[type="submit"]:hover {
+    background-color: #218838; /* Darker green on hover */
+}

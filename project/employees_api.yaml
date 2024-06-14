@@ -1,0 +1,119 @@
+openapi: 3.0.3
+info:
+  title: ADMIN API for managing the employees
+  description: This is the API for admins to manage the employees
+  version: 1.0.0
+servers:
+  - url: '/api'
+paths:
+  /employees:
+    get:
+      operationId: employees.read_all
+      tags:
+        - Employees
+      summary: Read the list with employees
+      responses:
+        200:
+          description: Successfully read the employees' list
+    post:
+      operationId: employees.create
+      tags:
+        - Employees
+      summary: Add a new employee
+      requestBody:
+        description: Add a new employee
+        required: true
+        content:
+          application/json:
+            schema:
+              x-body-name: "employee"
+              $ref: "#/components/schemas/Employee"
+      responses:
+        201:
+          description: Successfully added a employee
+  /employees/{id}:
+    get:
+      operationId: employees.read_employeeById
+      tags:
+        - Employees
+      summary: Read one employee with a specific ID
+      parameters:
+        - $ref: "#/components/parameters/id"
+      responses:
+        200:
+          description: Successfully read the employee's information
+        404:
+          description: Not found
+    put:
+      operationId: employees.update_employeeById
+      tags:
+        - Employees
+      summary: Update the information of a employee
+      parameters:
+        - $ref: "#/components/parameters/id"
+      responses:
+        200:
+          description: Successfully updated the information
+      requestBody:
+        content:
+          application/json:
+            schema:
+              x-body-name: "employee"
+              $ref: "#/components/schemas/Employee"
+    delete:
+      operationId: employees.delete_employeeById
+      tags:
+        - Employees
+      summary: Delete a employee
+      parameters:
+        - $ref: "#/components/parameters/id"
+      responses:
+        204:
+          description: Successfully deleted the employee
+  /employees/{name}:
+    get:
+      operationId: employees.read_employeeByName
+      tags:
+        - Employees
+      summary: Read employees or employee by their name
+      parameters:
+        - $ref: "#/components/parameters/name"
+      responses:
+        200:
+          description: Successfully read the employee's information
+        404:
+          description: Not found
+
+components:
+  schemas:
+    Employee:
+      type: object
+      required:
+        - name
+        - surname
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        surname:
+          type: string
+        position:
+          type: string
+        phone:
+          type: string
+  parameters:
+    name:
+      name: name
+      description: The name of the employee
+      in: path
+      required: true
+      schema:
+        type: string
+    id:
+      name: id
+      description: The unique ID of every employee
+      in: path
+      required: true
+      schema:
+        type: integer

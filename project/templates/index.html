@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='/css/index.css')}}">
+    <title>Employees Information</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Employees Information</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Surname</th>
+                    <th>Position</th>
+                    <th>Phone</th>
+                    <th>Email</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for employee in employees %}
+                <tr>
+                    <td>{{ employee.id }}</td>
+                    <td>{{ employee.name }}</td>
+                    <td>{{ employee.surname }}</td>
+                    <td>{{ employee.position }}</td>
+                    <td>{{ employee.phone }}</td>
+                    <td>{{ employee.email }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <!-- Button for adding a new employee -->
+        <button id="addButton" class="btn">Add New Employee</button>
+        <!-- Include the JavaScript file -->
+        <script src="{{ url_for('static', filename='js/addemployee.js') }}"></script>
+
+        <!-- Form that edits an employee -->
+        <form id="editEmployeeForm" method="GET">
+            <label for="editId">Employee ID to edit:</label>
+            <input type="number" id="editId" name="id" required>
+            <br>
+            <input type="submit" value="Submit">
+        </form>
+        <script>
+            document.getElementById('editEmployeeForm').addEventListener('submit', function(event) {
+                event.preventDefault(); // Prevent default form submission behavior
+                var idValue = document.getElementById('editId').value;
+                window.location.href = '/edit_employee/' + encodeURIComponent(idValue); // Redirect to the constructed URL
+            });
+        </script>
+
+        <!-- Form that deletes an employee -->
+        <form id="deleteForm" method="POST">
+            <label for="deleteId">Employee ID to delete:</label>
+            <input type="number" id="deleteId" name="id" required>
+            <br>
+            <input type="submit" value="Delete">
+        </form>
+        <script>
+            document.getElementById('deleteForm').addEventListener('submit', function(event) {
+                event.preventDefault(); // Prevent default form submission behavior
+                var idValue = document.getElementById('deleteId').value;
+                var form = event.target;
+                form.action = '/deleteemployee/' + encodeURIComponent(idValue); // Set form action to the constructed URL
+                form.submit(); // Submit the form
+            });
+        </script>
+        <!-- Logout button -->
+        <form id="logoutForm" action="{{ url_for('logout') }}" method="POST">
+            <button type="submit" class="btn">Logout</button>
+        </form>
+    </div>
+</body>
+</html>
