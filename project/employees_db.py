@@ -9,11 +9,11 @@ def create_database():
     # Create a table if it doesn't exist
     c.execute('''CREATE TABLE IF NOT EXISTS employees (
                  id INTEGER PRIMARY KEY,
-                 name TEXT NOT NULL,
-                 surname TEXT NOT NULL,
-                 position TEXT NOT NULL,
-                 phone INT NOT NULL,
-                 email TEXT NOT NULL
+                 name VARCHAR(20) NOT NULL CHECK(name GLOB '[A-Za-z]*'),
+                 surname VARCHAR(20) NOT NULL CHECK(surname GLOB '[A-Za-z]*'),
+                 position VARCHAR(40) NOT NULL CHECK(position GLOB '[A-Za-z]*'),
+                 phone INTEGER NOT NULL,
+                 email VARCHAR(30) NOT NULL
                  )''')
 
     # Commit changes and close connection
